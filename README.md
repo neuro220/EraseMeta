@@ -1,7 +1,7 @@
 # 🛡️ EraseMeta
 
 **Total Privacy. Zero Traces.**  
-EraseMeta is a powerful, privacy-first browser extension that automatically strips metadata (EXIF, GPS, author info, and more) from your files before they are uploaded to the web. 
+EraseMeta is a powerful, privacy-first browser extension that automatically strips metadata (EXIF, GPS, author info, and more) from your files before they are uploaded to the web or downloaded from web. 
 
 Processing happens **100% locally** in your browser — your files never leave your computer until they are clean.
 
@@ -25,7 +25,7 @@ Processing happens **100% locally** in your browser — your files never leave y
 ## 🛠️ Installation
 
 ### Chrome / Edge / Brave
-1. Download the latest `EraseMeta_Chrome_v1.0.zip` from the [Releases](https://github.com/USER/EraseMeta/releases) page.
+1. Download the latest `EraseMeta_Chrome_v1.0.zip` from the Release page.
 2. Unzip the folder.
 3. Open `chrome://extensions/` in your browser.
 4. Enable **Developer mode** (top right).
@@ -49,19 +49,3 @@ Processing happens **100% locally** in your browser — your files never leave y
 - **Identity**: Custom-designed minimalist logo and premium HSL-based design system.
 
 ---
-
-## 📜 License
-
-This project is licensed under the [GNU Affero General Public License v3](LICENSE).
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
