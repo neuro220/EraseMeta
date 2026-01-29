@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <header>
+        <img src="icon-48.png" class="logo" alt="Logo">
+        <h1>EraseMeta</h1>
+    </header>
+
+    <main>
+        <!-- Stats Card -->
+        <div class="card stats-card">
+            <span class="stats-label">Files Protected</span>
+            <span id="statsCount" class="stats-value">0</span>
+        </div>
+
+        <!-- Settings Card -->
+        <div class="card">
+            <div class="toggle-group">
+                <div class="toggle-item">
+                    <span class="toggle-label">Clean downloads</span>
+                    <label class="switch">
+                        <input type="checkbox" id="downloadToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-item">
+                    <span class="toggle-label">Auto-clean uploads</span>
+                    <label class="switch">
+                        <input type="checkbox" id="autoUploadToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+
+
+                <div class="toggle-item">
+                    <span class="toggle-label">Block upload on error</span>
+                    <label class="switch">
+                        <input type="checkbox" id="blockErrorToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Settings saved automatically.</p>
+    </footer>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

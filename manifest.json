@@ -1,0 +1,66 @@
+{
+    "name": "EraseMeta",
+    "description": "Remove metadata before uploading files!",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "type": "module"
+    },
+    "action": {
+        "default_title": "EraseMeta",
+        "default_icon": {
+            "16": "icon-16.png",
+            "48": "icon-48.png",
+            "128": "icon-128.png"
+        },
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "icon-16.png",
+        "48": "icon-48.png",
+        "128": "icon-128.png"
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "content-loader.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "content.js",
+                "/utils/base64.js",
+                "/utils/fileDict.js",
+                "/utils/chunkManager.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "permissions": [
+        "tabs",
+        "contextMenus",
+        "downloads",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "EraseMeta@EraseMeta"
+        }
+    }
+}

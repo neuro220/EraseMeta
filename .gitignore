@@ -1,0 +1,29 @@
+# Extensions
+# manifest.json should NOT be ignored as it is the core file for the extension
+# manifest_firefox.json should also be included
+
+*.zip
+*.crx
+*.xpi
+
+# Environments
+.venv/
+venv/
+ENV/
+pyvenv.cfg
+.Python
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Workspace
+.vscode/
+.idea/
+*.swp
