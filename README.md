@@ -23,16 +23,16 @@ Processing happens **100% locally** in your browser — your files never leave y
 ## 🛠️ Installation
 
 ### Chrome / Edge / Brave
-1. Download the latest `EraseMeta_Chrome_v1.0.zip` from the Release page https://github.com/neuro220/EraseMeta/releases/download/v1.0/EraseMeta_Chrome_v1.0.zip
+1. Download the latest from the Release page https://github.com/neuro220/EraseMeta/releases
 2. Unzip the folder.
 3. Open `chrome://extensions/` in your browser.
 4. Enable **Developer mode** (top right).
 5. Click **Load unpacked** and select the unzipped folder.
 
 ### Firefox
-1. Download `EraseMeta_Firefox_v1.0.zip` from the release page https://github.com/neuro220/EraseMeta/releases/download/v1.0/EraseMeta_Firefox_v1.0.zip
+1. Download the latest from the release page https://github.com/neuro220/EraseMeta/releases
 2. Open `about:debugging#/runtime/this-firefox`.
-3. Click **Load Temporary Add-on...** and select `manifest.json` from the unzipped folder.
+3. Click **Load Temporary Add-on...** and select `manifest_firefox.json` from the unzipped folder.
    
 ---
 
