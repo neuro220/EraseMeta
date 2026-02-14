@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* Critical CSS for instant render */
+        body { margin: 0; padding: 20px; font-family: system-ui, -apple-system, sans-serif; background: hsl(210, 20%, 98%); width: 340px; }
+        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .stats-value { font-size: 36px; font-weight: 800; color: hsl(210, 100%, 50%); }
+        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; }
+        .loading { opacity: 0.5; }
+    </style>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <header>
+        <img src="../../assets/icon-48.png" class="logo" alt="Logo">
+        <h1>EraseMeta</h1>
+        <a href="../options/options.html" class="settings-link" title="Advanced Settings">⚙️</a>
+    </header>
+
+    <main>
+        <!-- Stats Card -->
+        <div class="card stats-card">
+            <span class="stats-label">Files Protected</span>
+            <span id="statsCount" class="stats-value">0</span>
+            <div class="stats-details">
+                <span id="storageSaved" class="stats-detail">0 KB saved</span>
+            </div>
+        </div>
+
+        <!-- Current Site Card -->
+        <div class="card site-card">
+            <div class="site-header">
+                <span class="site-label">Current Site</span>
+                <span id="currentSite" class="site-name">Loading...</span>
+            </div>
+            <div class="site-status">
+                <span id="siteStatus" class="status-badge status-unknown">Checking...</span>
+            </div>
+            <button id="toggleSiteBtn" class="btn btn-secondary" disabled>
+                Add to Blacklist
+            </button>
+        </div>
+
+        <!-- Settings Card -->
+        <div class="card">
+            <div class="toggle-group">
+                <div class="toggle-item">
+                    <span class="toggle-label">Clean downloads</span>
+                    <label class="switch">
+                        <input type="checkbox" id="downloadToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-item">
+                    <span class="toggle-label">Auto-clean uploads</span>
+                    <label class="switch">
+                        <input type="checkbox" id="autoUploadToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-item">
+                    <span class="toggle-label">Block upload on error</span>
+                    <label class="switch">
+                        <input type="checkbox" id="blockErrorToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-item">
+                    <span class="toggle-label">Zero-knowledge mode</span>
+                    <label class="switch">
+                        <input type="checkbox" id="debugModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card actions-card">
+            <h3 class="card-title">Quick Actions</h3>
+            <div class="actions-grid">
+                <button id="cleanClipboardBtn" class="btn btn-action">
+                    <span class="btn-icon">📋</span>
+                    <span>Clean Clipboard</span>
+                </button>
+                <button id="viewStatsBtn" class="btn btn-action">
+                    <span class="btn-icon">📊</span>
+                    <span>View Stats</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Keyboard Shortcuts Info -->
+        <div class="card shortcuts-card">
+            <h3 class="card-title">Keyboard Shortcuts</h3>
+            <div class="shortcut-list">
+                <div class="shortcut-item">
+                    <kbd>Alt+Shift+C</kbd>
+                    <span>Toggle auto-clean</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Alt+Shift+D</kbd>
+                    <span>Toggle download clean</span>
+                </div>
+                <div class="shortcut-item">
+                    <kbd>Alt+Shift+I</kbd>
+                    <span>Clean hovered image</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Settings saved automatically.</p>
+        <p class="version">v1.2</p>
+    </footer>
+
+    <script type="module" src="popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>EraseMeta - Settings</title>
+    <style>
+        /* Critical CSS for instant render */
+        body { margin: 0; padding: 40px 20px; font-family: system-ui, -apple-system, sans-serif; background: hsl(210, 20%, 98%); min-height: 100vh; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid hsl(210, 20%, 90%); position: relative; z-index: 100; }
+        .tab { padding: 12px 20px; border: none; background: transparent; cursor: pointer; font-size: 14px; border-bottom: 2px solid transparent; margin-bottom: -1px; position: relative; z-index: 101; }
+        .tab.active { color: hsl(210, 100%, 50%); border-bottom-color: hsl(210, 100%, 50%); }
+        .content { height: 650px; position: relative; overflow: hidden; }
+        .tab-content { display: none; width: 100%; height: 100%; overflow-y: auto; position: absolute; top: 0; left: 0; }
+        .tab-content.active { display: block; }
+        .setting-group { background: white; border-radius: 12px; border: 1px solid hsl(210, 20%, 90%); padding: 20px; margin-bottom: 16px; }
+        input:disabled, select:disabled, textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
+    <link rel="stylesheet" href="options.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="../../assets/icon-48.png" class="logo" alt="Logo">
+            <div class="header-text">
+                <h1>EraseMeta</h1>
+                <p class="subtitle">Advanced Settings</p>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button type="button" class="tab active" data-tab="general" onclick="if(window.switchTab)window.switchTab('general')">General</button>
+            <button type="button" class="tab" data-tab="metadata" onclick="if(window.switchTab)window.switchTab('metadata')">Metadata</button>
+            <button type="button" class="tab" data-tab="sites" onclick="if(window.switchTab)window.switchTab('sites')">Sites</button>
+            <button type="button" class="tab" data-tab="stats" onclick="if(window.switchTab)window.switchTab('stats')">Statistics</button>
+            <button type="button" class="tab" data-tab="about" onclick="if(window.switchTab)window.switchTab('about')">About</button>
+        </nav>
+
+        <main class="content">
+            <!-- General Tab -->
+            <section id="general" class="tab-content active">
+                <h2>General Settings</h2>
+                
+                <div class="setting-group">
+                    <h3>Upload Protection</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Auto-clean uploads</span>
+                            <span class="setting-desc">Automatically strip metadata from files before uploading</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="autoCleanUploads">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Block upload on error</span>
+                            <span class="setting-desc">Prevent upload if cleaning fails (otherwise uploads original)</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="blockOnError">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Download Protection</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Clean downloads</span>
+                            <span class="setting-desc">Automatically strip metadata from downloaded files</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="cleanDownloads">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Privacy</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Zero-knowledge mode</span>
+                            <span class="setting-desc">Disable all logging for maximum privacy</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="debugMode">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Keyboard Shortcuts</h3>
+                    <p class="setting-desc">Configure shortcuts in your browser's extension settings.</p>
+                    <div class="shortcuts-info">
+                        <div class="shortcut-item">
+                            <kbd>Alt+Shift+C</kbd>
+                            <span>Toggle auto-clean uploads</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>Alt+Shift+D</kbd>
+                            <span>Toggle clean downloads</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <kbd>Alt+Shift+I</kbd>
+                            <span>Clean hovered image</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metadata Tab -->
+            <section id="metadata" class="tab-content">
+                <h2>Metadata Preferences</h2>
+                <p class="section-desc">Choose which metadata to remove from different file types.</p>
+                
+                <div class="setting-group">
+                    <h3>Images (JPEG, PNG, WebP, etc.)</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">GPS Location</span>
+                            <span class="setting-desc">Remove location data from photos</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="removeGPS" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Camera Information</span>
+                            <span class="setting-desc">Remove camera model, lens, settings</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="removeCamera" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Timestamp</span>
+                            <span class="setting-desc">Remove date and time information</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="removeTimestamp">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Author/Creator</span>
+                            <span class="setting-desc">Remove author and copyright info</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="removeAuthor" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Software</span>
+                            <span class="setting-desc">Remove editing software information</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="removeSoftware" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Documents (PDF, Office)</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Author</span>
+                            <span class="setting-desc">Remove author name</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="removeDocAuthor" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Title</span>
+                            <span class="setting-desc">Remove document title</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="removeDocTitle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Creation Date</span>
+                            <span class="setting-desc">Remove creation and modification dates</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="removeDocDate">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Videos & Audio</h3>
+                    <p class="setting-desc">All metadata is removed from video and audio files (FFmpeg limitation).</p>
+                </div>
+            </section>
+
+            <!-- Sites Tab -->
+            <section id="sites" class="tab-content">
+                <h2>Site Management</h2>
+                <p class="section-desc">Control which sites have auto-clean enabled.</p>
+                
+                <div class="setting-group">
+                    <h3>Mode</h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Site List Mode</span>
+                            <span class="setting-desc">Choose how to use the site list below</span>
+                        </div>
+                        <select id="siteListMode" class="select-input">
+                            <option value="none">Disabled (clean all sites)</option>
+                            <option value="whitelist">Whitelist (only clean listed sites)</option>
+                            <option value="blacklist">Blacklist (don't clean listed sites)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Site List</h3>
+                    <p class="setting-desc">Enter one site per line. Use *.domain.com for wildcards.</p>
+                    <textarea id="siteList" class="textarea-input" placeholder="facebook.com&#10;instagram.com&#10;*.google.com"></textarea>
+                    <div class="button-group">
+                        <button id="saveSiteList" class="btn btn-primary">Save Site List</button>
+                        <button id="clearSiteList" class="btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Tab -->
+            <section id="stats" class="tab-content">
+                <h2>Usage Statistics</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value" id="totalFiles">0</span>
+                        <span class="stat-label">Total Files Cleaned</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="storageSaved">0 B</span>
+                        <span class="stat-label">Metadata Removed</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="imagesCleaned">0</span>
+                        <span class="stat-label">Images</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="videosCleaned">0</span>
+                        <span class="stat-label">Videos</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="docsCleaned">0</span>
+                        <span class="stat-label">Documents</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="audioCleaned">0</span>
+                        <span class="stat-label">Audio Files</span>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Metadata Removed</h3>
+                    <div class="metadata-stats">
+                        <div class="metadata-stat">
+                            <span class="metadata-label">GPS Locations</span>
+                            <span class="metadata-value" id="gpsRemoved">0</span>
+                        </div>
+                        <div class="metadata-stat">
+                            <span class="metadata-label">Author Names</span>
+                            <span class="metadata-value" id="authorRemoved">0</span>
+                        </div>
+                        <div class="metadata-stat">
+                            <span class="metadata-label">Camera Info</span>
+                            <span class="metadata-value" id="cameraRemoved">0</span>
+                        </div>
+                        <div class="metadata-stat">
+                            <span class="metadata-label">Timestamps</span>
+                            <span class="metadata-value" id="timestampRemoved">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h3>Data Management</h3>
+                    <div class="button-group">
+                        <button id="exportStats" class="btn btn-secondary">Export Statistics</button>
+                        <button id="clearStats" class="btn btn-danger">Clear Statistics</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Tab -->
+            <section id="about" class="tab-content">
+                <h2>About EraseMeta</h2>
+                
+                <div class="about-content">
+                    <div class="about-logo">
+                        <img src="../../assets/icon-128.png" alt="EraseMeta Logo">
+                    </div>
+                    
+                    <h3>EraseMeta v1.2</h3>
+                    <p class="about-desc">A privacy-first browser extension that automatically strips metadata from your files before they are uploaded to the web.</p>
+                    
+                    <div class="about-links">
+                        <a href="https://github.com/neuro220/EraseMeta" class="btn btn-secondary" target="_blank" id="githubLink">GitHub Repository</a>
+                        <a href="https://github.com/neuro220/EraseMeta/issues" class="btn btn-secondary" target="_blank" id="issueLink">Report Issue</a>
+                    </div>
+                    
+                    <div class="about-credits">
+                        <h4>Libraries Used</h4>
+                        <ul>
+                            <li><a href="https://github.com/ffmpegwasm/ffmpeg.wasm" target="_blank">FFmpeg.wasm</a> - Video/Audio processing</li>
+                            <li><a href="https://github.com/Hopding/pdf-lib" target="_blank">pdf-lib</a> - PDF manipulation</li>
+                            <li><a href="https://github.com/Stuk/jszip" target="_blank">JSZip</a> - Office document processing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="about-license">
+                        <p>Licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="options.js"></script>
+</body>
+
+</html>
